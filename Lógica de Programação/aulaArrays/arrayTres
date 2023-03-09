@@ -1,0 +1,8 @@
+function criarNovaArray(array){
+    let novaArray = [array.shift()] //novaArray = [-100]
+    novaArray.push(array.pop()) //novaArray = [-100, 16]
+    console.log(novaArray)
+}
+
+criarNovaArray([7, 14, "olá"])
+criarNovaArray([-100, "aplicativo", 16])
