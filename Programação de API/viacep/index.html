@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>API</title>
+</head>
+
+<body>
+    <div class="div">
+        <h1>Aula de<b id="json">JSON</b>- API</h1>
+        <input type="number" id="cep" min="0" placeholder="Digite o CEP" class="inputDados">
+        <br>
+        <input type="text" id="logradouro" placeholder="Logradouro" class="inputDados">
+        <br>
+        <input type="text" id="bairro" placeholder="Bairro" class="inputDados">
+        <br>
+        <input type="text" id="cidade" placeholder="Cidade" class="inputDados">
+        <br>
+        <input type="text" id="estado" placeholder="Estado" class="inputDados">
+        <br>
+        <input type="text" id="pais" placeholder="País" class="inputDados">
+        <br>
+        <input type="text" id="ibge" placeholder="IBGE" class="inputDados">
+        <br>
+        <button id="btao" class="btn" onclick="buscarEndereco()">Buscar CEP</button>
+    </div>
+</body>
+
+</html>
+
+<script>
+    let cep, logradouro, bairro, cidade, estado, pais, ibge;
+
+    cep = document.getElementById("cep");
+    cep.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") document.getElementById("btao").click();
+    });
+
+    function obterDados() {
+        cep = document.getElementById("cep");
+        logradouro = document.getElementById("logradouro");
+        bairro = document.getElementById("bairro");
+        cidade = document.getElementById("cidade");
+        estado = document.getElementById("estado");
+        pais = document.getElementById("pais");
+        ibge = document.getElementById("ibge");
+    }
+
+    function buscarEndereco() {
+        obterDados();
+
+        var url = "https://viacep.com.br/ws/" + cep.value + "/json";
+        var ponte = new XMLHttpRequest();
+
+        ponte.open('GET', url);
+
+        ponte.onload = () => {
+            var resposta = JSON.parse(ponte.responseText);
+            logradouro.value = resposta.logradouro;
+            bairro.value = resposta.bairro;
+            cidade.value = resposta.localidade;
+            estado.value = resposta.uf;
+            pais.value = "Brasil";
+            ibge.value = resposta.ibge + " habitantes";
+        }
+        ponte.send();
+    }
+</script>
