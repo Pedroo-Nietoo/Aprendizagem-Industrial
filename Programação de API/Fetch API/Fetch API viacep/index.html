@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>API</title>
+</head>
+
+<body>
+    <div class="div">
+        <h1>Aula de<b id="api">Fetch API</b></h1>
+        <input type="number" id="cep" min="0" placeholder="Digite o CEP" class="inputDados">
+        <br>
+        <input type="text" id="logradouro" placeholder="Logradouro" class="inputDados">
+        <br>
+        <input type="text" id="bairro" placeholder="Bairro" class="inputDados">
+        <br>
+        <input type="text" id="cidade" placeholder="Cidade" class="inputDados">
+        <br>
+        <input type="text" id="estado" placeholder="Estado" class="inputDados">
+        <br>
+        <input type="text" id="pais" placeholder="País" class="inputDados">
+        <br>
+        <div class="botoes">
+            <button id="btao" class="btn" onclick="buscarEndereco()">Buscar CEP</button>
+            <button id="btao" class="btn" onclick="limpar()">Limpar</button>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="index.js"></script>
