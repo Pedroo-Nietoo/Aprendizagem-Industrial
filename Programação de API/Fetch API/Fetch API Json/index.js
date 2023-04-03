@@ -1,11 +1,12 @@
-let cep, logradouro, bairro, cidade, estado, pais;
+let nome, cep, logradouro, bairro, cidade, estado, pais;
 
 cep = document.getElementById("cep");
 cep.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") document.getElementById("btao").click();
+    if (e.key === "Enter") document.getElementById("btao2").click();
 });
 
 function obterDados() {
+    nome = document.getElementById("nome");
     cep = document.getElementById("cep");
     logradouro = document.getElementById("logradouro");
     bairro = document.getElementById("bairro");
@@ -13,7 +14,7 @@ function obterDados() {
     estado = document.getElementById("estado");
     pais = document.getElementById("pais");
     if (cep.value.length == 8) {
-        return true
+        return true;
     }
     return false;
 }
@@ -21,14 +22,14 @@ function obterDados() {
 function buscarEndereco() {
     if (obterDados()) {
         var cepValido = cep.value.substr(0, 5) + "-" + cep.value.substr(5);
-        var url = `./${cepValido}.json`;
+        var url = `https://my-json-server.typicode.com/pedroo-nietoo/aprendizagem-industrial/cep/?code=${cepValido}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                logradouro.value = data.cep.address;
-                bairro.value = data.cep.district;
-                cidade.value = data.cep.city;
-                estado.value = data.cep.state;
+                logradouro.value = data[0].address;
+                bairro.value = data[0].district;
+                cidade.value = data[0].city;
+                estado.value = data[0].state;
                 pais.value = "Brasil";
             })
     } else {
@@ -36,7 +37,27 @@ function buscarEndereco() {
     }
 }
 
+function cadastrar() {
+    obterDados();
+    var pessoa = {
+        nome: nome.value,
+        cep: cep.value,
+        logradouro: logradouro.value,
+        cidade: cidade.value,
+        estado: estado.value,
+        pais: pais.value
+    }
+    var lista = JSON.parse(localStorage.getItem("Pessoas"))
+    if (lista == null) {
+        lista = []
+    }
+    lista.push(pessoa)
+    localStorage.setItem("Pessoas", JSON.stringify(lista))
+    alert(`Usuário ${pessoa.nome} cadastrado`)
+}
+
 function limpar() {
+    // localStorage.clear();
     cep.value = null;
     logradouro.value = null;
     bairro.value = null;

@@ -11,8 +11,13 @@
 
 <body>
     <div class="div">
-        <h1>Aula de<b id="api">Fetch API</b></h1>
-        <input type="number" id="cep" min="0" placeholder="Digite o CEP" class="inputDados">
+        <h1>ACEPI</h1>
+        <input type="text" id="nome" min="0" placeholder="Insira seu nome" class="inputDados">
+        <br>
+        <div id="divDupla">
+            <input type="number" id="cep" min="0" placeholder="Digite o CEP" class="inputCep">
+            <button id="btao2" class="btn" onclick="buscarEndereco()">Buscar CEP</button>
+        </div>
         <br>
         <input type="text" id="logradouro" placeholder="Logradouro" class="inputDados">
         <br>
@@ -25,8 +30,8 @@
         <input type="text" id="pais" placeholder="País" class="inputDados">
         <br>
         <div class="botoes">
-            <button id="btao" class="btn" onclick="buscarEndereco()">Buscar CEP</button>
-            <button id="btao" class="btn" onclick="limpar()">Limpar</button>
+            <button id="btao1" class="btn" onclick="cadastrar()">Cadastrar</button>
+            <button id="btao3" class="btn" onclick="limpar()">Limpar</button>
         </div>
     </div>
 </body>
